@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LocalPals — Founding Partner Network · Croatia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy:       #0F1F2E;
+  --navy-mid:   #1A3148;
+  --gold:       #B8965A;
+  --gold-light: #D4AF7A;
+  --sand:       #F2EBE0;
+  --sand-dark:  #E8DDD0;
+  --cream:      #FAF8F5;
+  --white:      #FFFFFF;
+  --ink:        #1A1A18;
+  --ink-mid:    #3D3D3A;
+  --ink-light:  #7A7870;
+  --sage:       #4A6741;
+  --display: 'Playfair Display', Georgia, serif;
+  --body: 'Outfit', sans-serif;
+  --mw: 1120px;
+  --pad: clamp(24px, 5vw, 72px);
+  --section: clamp(72px, 10vw, 128px) var(--pad);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--body); background: var(--cream); color: var(--ink); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+
+/* NAV */
+.nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; display: flex; justify-content: space-between; align-items: center; padding: 20px var(--pad); background: rgba(250,248,245,0.92); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(184,150,90,0.15); transition: box-shadow .3s; }
+.nav.up { box-shadow: 0 2px 32px rgba(15,31,46,.07); }
+.nav-logo { font-family: var(--display); font-size: 1.45rem; font-weight: 500; color: var(--navy); text-decoration: none; letter-spacing: .01em; }
+.nav-logo span { color: var(--gold); }
+.nav-links { display: flex; gap: 32px; list-style: none; }
+.nav-links a { font-size: .82rem; font-weight: 500; letter-spacing: .07em; text-transform: uppercase; text-decoration: none; color: var(--ink-mid); transition: color .2s; }
+.nav-links a:hover { color: var(--gold); }
+.nav-btn { background: var(--navy); color: var(--cream); padding: 11px 26px; border-radius: 2px; font-family: var(--body); font-size: .8rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; text-decoration: none; transition: background .25s, transform .2s; }
+.nav-btn:hover { background: var(--gold); transform: translateY(-1px); }
+@media (max-width: 768px) { .nav-links { display: none; } }
+
+/* BUTTONS */
+.btn { display: inline-flex; align-items: center; gap: 10px; padding: 16px 36px; border-radius: 2px; text-decoration: none; font-family: var(--body); font-size: .84rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; transition: all .25s; cursor: pointer; border: none; }
+.btn-dark { background: var(--navy); color: var(--cream); }
+.btn-dark:hover { background: var(--navy-mid); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(15,31,46,.25); }
+.btn-gold { background: var(--gold); color: var(--white); }
+.btn-gold:hover { background: #a0804a; transform: translateY(-2px); box-shadow: 0 8px 32px rgba(184,150,90,.35); }
+.btn-outline-light { background: transparent; color: var(--cream); border: 1.5px solid rgba(250,248,245,.4); }
+.btn-outline-light:hover { border-color: var(--cream); background: rgba(250,248,245,.1); }
+.btn-outline-dark { background: transparent; color: var(--navy); border: 1.5px solid rgba(15,31,46,.25); }
+.btn-outline-dark:hover { border-color: var(--gold); color: var(--gold); }
+.btn svg { transition: transform .2s; }
+.btn:hover svg { transform: translateX(4px); }
+
+/* HERO */
+.hero { min-height: 100svh; background: var(--navy); position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: center; padding: clamp(120px,18vh,180px) var(--pad) clamp(60px,8vh,100px); }
+.hero-mesh { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse 90% 70% at 80% 20%, rgba(184,150,90,.13) 0%, transparent 55%), radial-gradient(ellipse 60% 80% at 10% 90%, rgba(74,103,65,.18) 0%, transparent 50%); }
+.hero-grain { position: absolute; inset: 0; pointer-events: none; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E"); background-size: 220px; opacity: .04; }
+.hero-inner { position: relative; z-index: 2; max-width: var(--mw); margin: 0 auto; width: 100%; }
+.hero-tag { display: inline-flex; align-items: center; gap: 10px; font-size: .72rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 32px; }
+.hero-tag::before { content: ''; display: block; width: 32px; height: 1px; background: var(--gold); }
+.hero-h1 { font-family: var(--display); font-size: clamp(3rem, 7.5vw, 6.5rem); font-weight: 400; line-height: 1.08; color: var(--cream); letter-spacing: -.01em; margin-bottom: 28px; max-width: 860px; }
+.hero-h1 em { font-style: italic; color: var(--gold-light); }
+.hero-sub { font-size: clamp(1rem, 2vw, 1.15rem); font-weight: 300; color: rgba(242,235,224,.65); line-height: 1.75; max-width: 520px; margin-bottom: 52px; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 14px; }
+.hero-scroll { position: absolute; bottom: 36px; left: var(--pad); display: flex; align-items: center; gap: 12px; font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; color: rgba(242,235,224,.3); }
+.hero-scroll::before { content: ''; display: block; width: 1px; height: 36px; background: rgba(242,235,224,.18); }
+
+/* STRIP */
+.strip { background: var(--gold); padding: 18px var(--pad); display: flex; justify-content: center; align-items: center; gap: 40px; flex-wrap: wrap; }
+.strip-item { display: flex; align-items: center; gap: 10px; font-size: .76rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--white); }
+.strip-item::before { content: '◆'; font-size: .45rem; opacity: .55; }
+
+/* SECTION HELPERS */
+.section { padding: var(--section); }
+.inner { max-width: var(--mw); margin: 0 auto; }
+.eyebrow { display: inline-flex; align-items: center; gap: 10px; font-size: .72rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--gold); margin-bottom: 18px; }
+.eyebrow::before { content: ''; display: block; width: 24px; height: 1px; background: var(--gold); }
+h2.display { font-family: var(--display); font-size: clamp(2.2rem, 5vw, 4rem); font-weight: 400; line-height: 1.15; color: var(--navy); letter-spacing: -.01em; margin-bottom: 20px; }
+h2.display em { font-style: italic; color: var(--gold); }
+h2.display-light { font-family: var(--display); font-size: clamp(2.2rem, 5vw, 4rem); font-weight: 400; line-height: 1.15; color: var(--cream); letter-spacing: -.01em; margin-bottom: 20px; }
+h2.display-light em { font-style: italic; color: var(--gold-light); }
+.lead { font-size: clamp(.95rem, 1.8vw, 1.1rem); font-weight: 300; color: var(--ink-mid); line-height: 1.75; max-width: 560px; }
+.lead-light { font-size: clamp(.95rem, 1.8vw, 1.05rem); font-weight: 300; color: rgba(242,235,224,.6); line-height: 1.75; max-width: 540px; }
+
+/* WHAT */
+.what { background: var(--cream); }
+.what-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px, 7vw, 110px); align-items: center; margin-top: clamp(48px, 7vw, 88px); }
+.what-visual { position: relative; aspect-ratio: 3/4; border-radius: 4px; overflow: visible; }
+.what-img-box { width: 100%; height: 100%; border-radius: 4px; background: var(--navy-mid); position: relative; overflow: hidden; }
+.what-img-inner { position: absolute; inset: 0; background: radial-gradient(ellipse 70% 60% at 30% 40%, rgba(184,150,90,.25) 0%, transparent 60%), radial-gradient(ellipse 50% 70% at 80% 80%, rgba(74,103,65,.2) 0%, transparent 50%), var(--navy-mid); display: flex; align-items: center; justify-content: center; }
+.what-monogram { font-family: var(--display); font-size: 9rem; font-weight: 400; color: rgba(184,150,90,.15); line-height: 1; user-select: none; letter-spacing: -.04em; }
+.what-badge { position: absolute; bottom: -20px; right: -24px; background: var(--white); border-radius: 4px; padding: 18px 22px; box-shadow: 0 8px 40px rgba(15,31,46,.12); display: flex; align-items: center; gap: 12px; min-width: 200px; }
+.what-badge-dot { width: 36px; height: 36px; border-radius: 50%; background: var(--gold); flex-shrink: 0; display: flex; align-items: center; justify-content: center; color: white; font-size: .8rem; }
+.what-badge-text { font-size: .82rem; font-weight: 500; color: var(--ink); line-height: 1.4; }
+.what-badge-sub { font-size: .72rem; color: var(--ink-light); font-weight: 300; }
+.what-services { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
+.chip { background: var(--sand); color: var(--ink-mid); font-size: .75rem; font-weight: 500; letter-spacing: .04em; padding: 7px 14px; border-radius: 100px; border: 1px solid rgba(184,150,90,.2); }
+@media (max-width: 768px) { .what-grid { grid-template-columns: 1fr; } .what-visual { aspect-ratio: 4/3; } .what-badge { right: 0; bottom: -16px; } }
+
+/* HOW */
+.how { background: var(--navy); }
+.how-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(20px, 4vw, 48px); margin-top: clamp(48px, 7vw, 88px); }
+.step-card { padding: clamp(28px, 3vw, 44px); border: 1px solid rgba(242,235,224,.08); border-radius: 4px; position: relative; transition: border-color .3s, transform .3s; }
+.step-card:hover { border-color: rgba(184,150,90,.4); transform: translateY(-4px); }
+.step-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--gold), transparent); opacity: 0; transition: opacity .3s; }
+.step-card:hover::before { opacity: 1; }
+.step-n { font-family: var(--display); font-size: 4rem; font-weight: 400; color: rgba(184,150,90,.12); line-height: 1; margin-bottom: 24px; letter-spacing: -.02em; }
+.step-title { font-family: var(--display); font-size: 1.35rem; font-weight: 500; color: var(--cream); margin-bottom: 12px; }
+.step-p { font-size: .88rem; font-weight: 300; color: rgba(242,235,224,.5); line-height: 1.75; }
+@media (max-width: 768px) { .how-grid { grid-template-columns: 1fr; } }
+
+/* FOR SECTIONS */
+.for-prop { background: var(--sand); }
+.for-exp { background: var(--cream); }
+.for-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px, 7vw, 100px); align-items: start; margin-top: clamp(48px, 7vw, 80px); }
+.benefits { list-style: none; margin: 24px 0 36px; display: flex; flex-direction: column; gap: 14px; }
+.benefits li { display: flex; align-items: flex-start; gap: 14px; font-size: .92rem; font-weight: 300; color: var(--ink-mid); line-height: 1.6; }
+.benefit-icon { width: 22px; height: 22px; border-radius: 50%; background: var(--navy); flex-shrink: 0; display: flex; align-items: center; justify-content: center; margin-top: 1px; }
+.benefit-icon svg { width: 11px; height: 11px; }
+.highlight-card { background: var(--navy); border-radius: 6px; padding: clamp(28px, 4vw, 48px); position: relative; overflow: hidden; }
+.highlight-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--gold), var(--sage)); }
+.highlight-quote { font-family: var(--display); font-size: clamp(1.1rem, 2.5vw, 1.55rem); font-weight: 400; font-style: italic; color: var(--cream); line-height: 1.55; margin-bottom: 20px; }
+.highlight-meta { font-size: .75rem; color: rgba(242,235,224,.4); letter-spacing: .08em; text-transform: uppercase; }
+.service-row { display: flex; align-items: center; gap: 14px; padding: 14px 18px; background: rgba(242,235,224,.06); border-radius: 3px; border: 1px solid rgba(242,235,224,.08); }
+.service-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
+.service-label { font-size: .85rem; font-weight: 400; color: var(--cream); }
+@media (max-width: 768px) { .for-grid { grid-template-columns: 1fr; } }
+
+/* LOCATIONS */
+.locations { background: var(--navy); }
+.loc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: clamp(48px, 7vw, 80px); }
+.loc-card { border: 1px solid rgba(242,235,224,.1); border-radius: 4px; padding: clamp(28px, 4vw, 52px); position: relative; overflow: hidden; transition: border-color .3s, transform .3s; cursor: default; }
+.loc-card:hover { border-color: rgba(184,150,90,.45); transform: translateY(-5px); }
+.loc-n { font-family: var(--display); font-size: 7rem; font-weight: 400; color: rgba(184,150,90,.07); position: absolute; top: 8px; right: 20px; line-height: 1; letter-spacing: -.04em; pointer-events: none; }
+.loc-name { font-family: var(--display); font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 400; color: var(--cream); margin-bottom: 14px; }
+.loc-desc { font-size: .88rem; font-weight: 300; color: rgba(242,235,224,.5); line-height: 1.7; }
+.loc-pill { display: inline-block; margin-top: 22px; font-size: .68rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--gold-light); border: 1px solid rgba(184,150,90,.3); padding: 5px 14px; border-radius: 100px; }
+@media (max-width: 640px) { .loc-grid { grid-template-columns: 1fr; } }
+
+/* EARLY */
+.early { background: var(--cream); }
+.early-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: clamp(48px, 7vw, 80px); }
+.early-card { background: var(--white); border-radius: 4px; padding: clamp(22px, 3vw, 36px); border: 1px solid rgba(15,31,46,.08); transition: border-color .3s, transform .3s, box-shadow .3s; }
+.early-card:hover { border-color: var(--gold); transform: translateY(-4px); box-shadow: 0 12px 40px rgba(184,150,90,.12); }
+.early-icon { width: 44px; height: 44px; border-radius: 3px; background: var(--sand); display: flex; align-items: center; justify-content: center; margin-bottom: 18px; font-size: 1.1rem; color: var(--navy); }
+.early-card h3 { font-family: var(--display); font-size: 1.15rem; font-weight: 500; color: var(--navy); margin-bottom: 10px; }
+.early-card p { font-size: .85rem; font-weight: 300; color: var(--ink-mid); line-height: 1.7; }
+@media (max-width: 900px) { .early-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 480px) { .early-grid { grid-template-columns: 1fr; } }
+
+/* TRUST */
+.trust { background: var(--sand-dark); }
+.trust-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: rgba(15,31,46,.08); border-radius: 4px; overflow: hidden; margin-top: clamp(48px, 7vw, 80px); }
+.trust-cell { background: var(--sand); padding: clamp(28px, 4vw, 48px); }
+.trust-num { font-family: var(--display); font-size: .8rem; color: var(--gold); letter-spacing: .1em; margin-bottom: 14px; }
+.trust-cell h3 { font-family: var(--display); font-size: 1.2rem; font-weight: 500; color: var(--navy); margin-bottom: 10px; }
+.trust-cell p { font-size: .85rem; font-weight: 300; color: var(--ink-mid); line-height: 1.7; }
+@media (max-width: 768px) { .trust-grid { grid-template-columns: 1fr; } }
+
+/* COMPANY */
+.company { background: var(--white); }
+.company-box { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px, 6vw, 80px); align-items: center; margin-top: clamp(40px, 6vw, 72px); }
+.company-card { background: var(--cream); border-radius: 4px; padding: clamp(28px, 4vw, 48px); border-left: 3px solid var(--gold); }
+.company-name { font-family: var(--display); font-size: 1.6rem; font-weight: 500; color: var(--navy); margin-bottom: 12px; margin-top: 16px; }
+.company-desc { font-size: .9rem; font-weight: 300; color: var(--ink-mid); line-height: 1.75; }
+.company-reg { font-size: .78rem; color: var(--ink-light); margin-top: 16px; font-style: italic; }
+@media (max-width: 768px) { .company-box { grid-template-columns: 1fr; } }
+
+/* APPLY */
+.apply { background: var(--cream); }
+.apply-inner { display: grid; grid-template-columns: 1fr 1.6fr; gap: clamp(40px, 6vw, 100px); align-items: start; margin-top: clamp(40px, 6vw, 72px); }
+.apply-left { position: sticky; top: 100px; }
+.apply-contact { border: 1px solid rgba(15,31,46,.1); border-radius: 4px; padding: 24px; margin-top: 32px; }
+.apply-contact p { font-size: .88rem; font-weight: 300; color: var(--ink-mid); line-height: 1.7; }
+.apply-contact a { color: var(--gold); text-decoration: none; font-weight: 500; }
+.apply-contact a:hover { text-decoration: underline; }
+.toggle { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid rgba(15,31,46,.15); border-radius: 3px; overflow: hidden; margin-bottom: 32px; width: 100%; }
+.toggle-btn { width: 100%; padding: 14px; border: none; border-right: 1px solid rgba(15,31,46,.1); background: transparent; font-family: var(--body); font-size: .8rem; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; color: var(--ink-light); cursor: pointer; transition: all .25s; display: block; text-align: center; -webkit-appearance: none; position: relative; z-index: 1; }
+.toggle-btn:last-child { border-right: none; }
+.toggle-btn.on { background: var(--navy); color: var(--cream); }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.field { display: flex; flex-direction: column; gap: 7px; }
+.field.span2 { grid-column: 1/-1; }
+label { font-size: .72rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--gold); }
+input, select, textarea { width: 100%; padding: 13px 16px; border: 1px solid rgba(15,31,46,.15); border-radius: 3px; background: var(--white); font-family: var(--body); font-size: .92rem; font-weight: 300; color: var(--ink); outline: none; transition: border-color .25s, box-shadow .25s; appearance: none; }
+input::placeholder, textarea::placeholder { color: var(--ink-light); }
+input:focus, select:focus, textarea:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(184,150,90,.1); }
+textarea { resize: vertical; min-height: 96px; }
+select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%230F1F2E' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 16px center; padding-right: 44px; cursor: pointer; }
+.form-submit { width: 100%; margin-top: 18px; padding: 18px; background: var(--navy); color: var(--cream); border: none; border-radius: 3px; cursor: pointer; font-family: var(--body); font-size: .84rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; display: flex; align-items: center; justify-content: center; gap: 10px; transition: background .25s, transform .2s; }
+.form-submit:hover { background: var(--gold); transform: translateY(-2px); }
+.form-note { text-align: center; font-size: .76rem; color: var(--ink-light); margin-top: 14px; font-weight: 300; }
+.form-success { display: none; text-align: center; padding: 56px 24px; }
+.form-success.show { display: block; }
+.success-icon { width: 64px; height: 64px; border-radius: 50%; background: var(--sage); display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; font-size: 1.4rem; color: white; }
+.form-success h3 { font-family: var(--display); font-size: 1.8rem; font-weight: 400; color: var(--navy); margin-bottom: 12px; }
+.form-success p { font-size: .92rem; font-weight: 300; color: var(--ink-mid); }
+@media (max-width: 900px) { .apply-inner { grid-template-columns: 1fr; } .apply-left { position: static; } .form-grid { grid-template-columns: 1fr; } .field.span2 { grid-column: 1; } }
+
+/* FINAL */
+.final { background: var(--navy); text-align: center; padding: clamp(80px, 12vw, 144px) var(--pad); }
+.final h2 { font-family: var(--display); font-size: clamp(2.4rem, 6vw, 5rem); font-weight: 400; line-height: 1.1; color: var(--cream); margin-bottom: 22px; letter-spacing: -.01em; }
+.final h2 em { font-style: italic; color: var(--gold-light); }
+.final-btns { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; margin-top: 40px; }
+
+/* FOOTER */
+footer { background: #080F16; color: rgba(242,235,224,.35); padding: clamp(40px, 6vw, 64px) var(--pad); }
+.footer-inner { max-width: var(--mw); margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 32px; }
+.footer-logo { font-family: var(--display); font-size: 1.4rem; font-weight: 400; color: var(--cream); text-decoration: none; display: block; margin-bottom: 8px; }
+.footer-logo span { color: var(--gold); }
+.footer-tagline { font-size: .78rem; color: rgba(242,235,224,.3); font-weight: 300; }
+.footer-links { display: flex; flex-wrap: wrap; gap: 20px; list-style: none; }
+.footer-links a { font-size: .8rem; font-weight: 300; color: rgba(242,235,224,.4); text-decoration: none; transition: color .2s; }
+.footer-links a:hover { color: var(--gold-light); }
+.footer-bottom { max-width: var(--mw); margin: 32px auto 0; padding-top: 24px; border-top: 1px solid rgba(242,235,224,.07); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: .72rem; font-weight: 300; color: rgba(242,235,224,.25); }
+hr.rule { border: none; height: 1px; background: rgba(15,31,46,.08); }
+
+/* WHATSAPP MOCKUP */
+.wa-phone { width: 100%; height: 100%; background: #111B21; border-radius: 24px; overflow: hidden; box-shadow: 0 32px 80px rgba(15,31,46,.35), 0 0 0 1px rgba(255,255,255,.06); display: flex; flex-direction: column; font-family: -apple-system, "Segoe UI", sans-serif; }
+.wa-screen { display: flex; flex-direction: column; height: 100%; }
+.wa-header { background: #1F2C34; padding: 10px 14px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid rgba(255,255,255,.05); flex-shrink: 0; }
+.wa-back { color: rgba(255,255,255,.5); font-size: .9rem; }
+.wa-avatar { width: 34px; height: 34px; border-radius: 50%; background: linear-gradient(135deg, #B8965A, #8B6A35); display: flex; align-items: center; justify-content: center; font-size: .65rem; font-weight: 700; color: white; flex-shrink: 0; }
+.wa-contact { flex: 1; }
+.wa-name { font-size: .82rem; font-weight: 600; color: #E9EDEF; line-height: 1.2; }
+.wa-status { font-size: .68rem; color: #25D366; }
+.wa-icons { color: rgba(255,255,255,.4); }
+.wa-body { flex: 1; overflow-y: auto; padding: 12px 10px; background: #0B141A; display: flex; flex-direction: column; gap: 6px; scrollbar-width: none; }
+.wa-body::-webkit-scrollbar { display: none; }
+.wa-date-divider { text-align: center; font-size: .65rem; color: #8696A0; background: rgba(11,20,26,.8); padding: 3px 10px; border-radius: 6px; align-self: center; margin: 4px 0 8px; }
+.wa-msg { display: flex; flex-direction: column; }
+.wa-msg-in { align-items: flex-start; }
+.wa-msg-out { align-items: flex-end; }
+.wa-bubble { max-width: 80%; padding: 8px 10px 18px; border-radius: 8px; font-size: .78rem; line-height: 1.45; position: relative; word-break: break-word; }
+.wa-bubble-in { background: #1F2C34; color: #E9EDEF; border-top-left-radius: 2px; }
+.wa-bubble-out { background: #005C4B; color: #E9EDEF; border-top-right-radius: 2px; }
+.wa-bubble-confirm { background: #0A4A3B; border: 1px solid rgba(37,211,102,.2); }
+.wa-time { position: absolute; bottom: 4px; right: 8px; font-size: .58rem; color: rgba(255,255,255,.4); white-space: nowrap; }
+.wa-card { background: #1F2C34; border-radius: 8px; overflow: hidden; max-width: 82%; border: 1px solid rgba(255,255,255,.06); border-top-right-radius: 2px; }
+.wa-card-img { background: linear-gradient(135deg, #1A3148, #0F1F2E); padding: 18px; font-size: 2rem; text-align: center; border-bottom: 1px solid rgba(255,255,255,.05); }
+.wa-card-body { padding: 10px 12px 12px; }
+.wa-card-title { font-size: .8rem; font-weight: 600; color: #E9EDEF; margin-bottom: 3px; }
+.wa-card-sub { font-size: .68rem; color: #8696A0; margin-bottom: 8px; }
+.wa-card-action { font-size: .72rem; color: #25D366; font-weight: 600; border-top: 1px solid rgba(255,255,255,.07); padding-top: 8px; margin-top: 4px; }
+.wa-time-out { font-size: .6rem; color: rgba(255,255,255,.35); align-self: flex-end; margin-top: 3px; padding-right: 4px; }
+.wa-input-bar { background: #1F2C34; padding: 8px 10px; display: flex; align-items: center; gap: 8px; border-top: 1px solid rgba(255,255,255,.05); flex-shrink: 0; }
+.wa-input-field { flex: 1; background: #2A3942; border-radius: 20px; padding: 8px 14px; font-size: .75rem; color: #8696A0; }
+.wa-send-btn { width: 34px; height: 34px; border-radius: 50%; background: #00A884; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <a href="#" class="nav-logo">Local<span>Pals</span></a>
+  <ul class="nav-links">
+    <li><a href="#what">About</a></li>
+    <li><a href="#property">Property</a></li>
+    <li><a href="#experiences">Experiences</a></li>
+    <li><a href="#apply">Apply</a></li>
+  </ul>
+  <a href="#apply" class="nav-btn">Become a Partner</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-mesh"></div>
+  <div class="hero-grain"></div>
+  <div class="hero-inner">
+    <div class="hero-tag">Partner Programme · Croatia · 2026</div>
+    <h1 class="hero-h1">
+      Your local connection<br>to the <em>finest</em> guest<br>experiences in Croatia
+    </h1>
+    <p class="hero-sub">LocalPals is building a curated concierge network connecting travelers in villas and apartments with trusted local restaurants, experiences, and services.</p>
+    <div class="hero-actions">
+      <a href="#apply" class="btn btn-gold">
+        Become a Founding Partner
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="#what" class="btn btn-outline-light">Learn More</a>
+    </div>
+  </div>
+  <div class="hero-scroll">Scroll to explore</div>
+</section>
+
+<!-- STRIP -->
+<div class="strip">
+  <div class="strip-item">Property Partners</div>
+  <div class="strip-item">Experience Providers</div>
+  <div class="strip-item">Zagreb &amp; Istria</div>
+  <div class="strip-item">Founding Network 2026</div>
+</div>
+
+<!-- WHAT -->
+<section class="section what" id="what">
+  <div class="inner">
+    <div class="what-grid">
+      <div class="what-visual">
+        <!-- WhatsApp Mockup -->
+        <div class="wa-phone">
+          <div class="wa-screen">
+            <!-- Header -->
+            <div class="wa-header">
+              <div class="wa-back">&#8592;</div>
+              <div class="wa-avatar">LP</div>
+              <div class="wa-contact">
+                <div class="wa-name">LocalPals</div>
+                <div class="wa-status">● online</div>
+              </div>
+              <div class="wa-icons">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.95 13a19.79 19.79 0 01-3.07-8.67A2 2 0 012.86 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+            </div>
+            <!-- Chat background -->
+            <div class="wa-body">
+              <div class="wa-date-divider">Today</div>
+
+              <!-- Guest message -->
+              <div class="wa-msg wa-msg-in">
+                <div class="wa-bubble wa-bubble-in">
+                  Hi! 👋 We just arrived at the villa. Any recommendations for dinner tonight in Rovinj? Preferably something with a sea view 🌊
+                  <div class="wa-time">18:42</div>
+                </div>
+              </div>
+
+              <!-- LocalPals reply -->
+              <div class="wa-msg wa-msg-out">
+                <div class="wa-bubble wa-bubble-out">
+                  Welcome! 🏡 Great timing — here are my top 3 for tonight:
+                  <div class="wa-time">18:43 ✓✓</div>
+                </div>
+              </div>
+
+              <!-- Card recommendation -->
+              <div class="wa-msg wa-msg-out">
+                <div class="wa-card">
+                  <div class="wa-card-img">🍽️</div>
+                  <div class="wa-card-body">
+                    <div class="wa-card-title">Monte Restaurant</div>
+                    <div class="wa-card-sub">Fine dining · Sea view · 2 min walk</div>
+                    <div class="wa-card-action">Reserve a table →</div>
+                  </div>
+                </div>
+                <div class="wa-time wa-time-out">18:43 ✓✓</div>
+              </div>
+
+              <!-- Guest reply -->
+              <div class="wa-msg wa-msg-in">
+                <div class="wa-bubble wa-bubble-in">
+                  Monte looks perfect! Can you book for 4 people at 20:00? 🙏
+                  <div class="wa-time">18:45</div>
+                </div>
+              </div>
+
+              <!-- Confirmation -->
+              <div class="wa-msg wa-msg-out">
+                <div class="wa-bubble wa-bubble-out wa-bubble-confirm">
+                  ✅ Done! Table for 4 at Monte — tonight at 20:00. They'll be expecting you. Enjoy! 🥂
+                  <div class="wa-time">18:46 ✓✓</div>
+                </div>
+              </div>
+
+            </div>
+            <!-- Input bar -->
+            <div class="wa-input-bar">
+              <div class="wa-input-field">Message</div>
+              <div class="wa-send-btn">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Badge -->
+        <div class="what-badge">
+          <div class="what-badge-dot">✦</div>
+          <div>
+            <div class="what-badge-text">Concierge via WhatsApp</div>
+            <div class="what-badge-sub">Instant · Trusted · Local</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="eyebrow">About LocalPals</div>
+        <h2 class="display">A new layer between<br>guests and <em>local life</em></h2>
+        <p class="lead" style="margin-bottom:20px;">LocalPals is a concierge network built for travelers staying in private accommodation. Guests access a curated guide of trusted local services — all recommended through their host, powered by LocalPals.</p>
+        <p class="lead" style="font-size:.9rem; margin-bottom:28px;">We're now building our founding partner network in Zagreb and Istria — recruiting both property partners and experience providers who care about exceptional guest experiences.</p>
+        <div class="what-services">
+          <span class="chip">Restaurant reservations</span>
+          <span class="chip">Wine tours</span>
+          <span class="chip">Private chefs</span>
+          <span class="chip">Wellness &amp; massage</span>
+          <span class="chip">Airport transfers</span>
+          <span class="chip">Local guides</span>
+          <span class="chip">Boat experiences</span>
+          <span class="chip">Cooking classes</span>
+        </div>
+        <div style="margin-top:36px;">
+          <a href="#apply" class="btn btn-dark">
+            Partner with LocalPals
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- HOW -->
+<section class="section how" id="how">
+  <div class="inner">
+    <div class="eyebrow" style="color:var(--gold-light);"><span style="display:block;width:24px;height:1px;background:var(--gold);flex-shrink:0;"></span>How It Works</div>
+    <h2 class="display-light">Three steps to a <em>better guest stay</em></h2>
+    <div class="how-grid">
+      <div class="step-card">
+        <div class="step-n">01</div>
+        <div class="step-title">Guests access LocalPals</div>
+        <p class="step-p">On arrival, guests receive access to LocalPals through their accommodation — a curated local concierge guide, personalised for their stay.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-n">02</div>
+        <div class="step-title">They discover &amp; request</div>
+        <p class="step-p">Guests browse trusted local experiences — restaurants, wine tours, private chefs, wellness, transfers — and request with ease.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-n">03</div>
+        <div class="step-title">LocalPals connects them</div>
+        <p class="step-p">We coordinate with our partner network to confirm, handle logistics, and ensure a seamless experience from first request to final delivery.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOR PROPERTY -->
+<section class="section for-prop" id="property">
+  <div class="inner">
+    <div class="for-grid">
+      <div>
+        <div class="eyebrow">For Property Partners</div>
+        <h2 class="display">Better guest stays,<br><em>less effort</em></h2>
+        <p class="lead">Offer a professional concierge experience to your guests without building one in-house. LocalPals does the work — you get the results.</p>
+        <ul class="benefits">
+          <li><div class="benefit-icon"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Elevate your property's hospitality without additional staff</li>
+          <li><div class="benefit-icon"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Reduce repetitive guest questions with trusted local answers</li>
+          <li><div class="benefit-icon"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Strengthen reviews and repeat bookings through exceptional stays</li>
+          <li><div class="benefit-icon"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Give guests access to curated, vetted local experiences on demand</li>
+          <li><div class="benefit-icon"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Join a network of premium accommodation partners in Croatia</li>
+        </ul>
+        <a href="#apply" class="btn btn-dark" onclick="setType('property')">
+          I Manage Properties
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+      <div>
+        <div class="highlight-card">
+          <div class="highlight-quote">"Our guests always ask the same questions. With LocalPals, they'd have a trusted answer before they even need to ask."</div>
+          <div class="highlight-meta">Villa owner, Istria · Early partner tester</div>
+          <div style="margin-top:28px; border-top:1px solid rgba(242,235,224,.08); padding-top:28px; display:flex; flex-direction:column; gap:10px;">
+            <div style="font-size:.7rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:rgba(242,235,224,.3); margin-bottom:8px;">Suited for</div>
+            <div class="service-row"><div class="service-dot"></div><div class="service-label">Villa owners &amp; boutique properties</div></div>
+            <div class="service-row"><div class="service-dot"></div><div class="service-label">Property management companies</div></div>
+            <div class="service-row"><div class="service-dot"></div><div class="service-label">Boutique apartment hosts</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- FOR EXPERIENCES -->
+<section class="section for-exp" id="experiences">
+  <div class="inner">
+    <div class="for-grid">
+      <div style="order:2">
+        <div class="eyebrow">For Experience Providers</div>
+        <h2 class="display">Reach guests already <em>in Croatia</em></h2>
+        <p class="lead">Direct access to high-intent travelers staying in private accommodation — without the noise of mainstream booking platforms.</p>
+        <ul class="benefits">
+          <li><div class="benefit-icon" style="background:var(--gold)"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Access to guests already committed to experiencing Croatia</li>
+          <li><div class="benefit-icon" style="background:var(--gold)"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>No outbound marketing — referrals come through trusted hosts</li>
+          <li><div class="benefit-icon" style="background:var(--gold)"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Be part of a curated, quality-first partner network</li>
+          <li><div class="benefit-icon" style="background:var(--gold)"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Early partners gain priority placement and founding visibility</li>
+          <li><div class="benefit-icon" style="background:var(--gold)"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>Help shape the platform from the inside</li>
+        </ul>
+        <a href="#apply" class="btn btn-gold" onclick="setType('experience')">
+          I Offer Experiences
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+      <div style="order:1; display:flex; flex-direction:column; gap:12px;">
+        <div style="background:var(--sand); padding:22px 26px; border-radius:4px; border-left:3px solid var(--gold);">
+          <div style="font-size:.7rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--gold); margin-bottom:8px;">Wine &amp; Gastronomy</div>
+          <div style="font-size:.88rem; color:var(--ink-mid); font-weight:300;">Vineyard tours · Private tastings · Olive oil experiences · Truffle hunts</div>
+        </div>
+        <div style="background:var(--sand); padding:22px 26px; border-radius:4px; border-left:3px solid var(--sage);">
+          <div style="font-size:.7rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--sage); margin-bottom:8px;">Culinary Experiences</div>
+          <div style="font-size:.88rem; color:var(--ink-mid); font-weight:300;">Private chefs · Cooking classes · Market tours · Food &amp; wine pairing</div>
+        </div>
+        <div style="background:var(--sand); padding:22px 26px; border-radius:4px; border-left:3px solid var(--navy-mid);">
+          <div style="font-size:.7rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--navy-mid); margin-bottom:8px;">Wellness &amp; Relaxation</div>
+          <div style="font-size:.88rem; color:var(--ink-mid); font-weight:300;">Massage therapy · Yoga &amp; meditation · Spa treatments · Breathwork</div>
+        </div>
+        <div style="background:var(--sand); padding:22px 26px; border-radius:4px; border-left:3px solid var(--ink-light);">
+          <div style="font-size:.7rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-light); margin-bottom:8px;">Transfers &amp; Guided Tours</div>
+          <div style="font-size:.88rem; color:var(--ink-mid); font-weight:300;">Airport transfers · Local excursions · Boat trips · Cultural guides</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATIONS -->
+<section class="section locations" id="locations">
+  <div class="inner">
+    <div class="eyebrow" style="color:var(--gold-light);"><span style="display:block;width:24px;height:1px;background:var(--gold);flex-shrink:0;"></span>Launch Areas</div>
+    <h2 class="display-light">Where we're building <em>first</em></h2>
+    <p class="lead-light">LocalPals is recruiting its founding partner network in two of Croatia's most compelling travel destinations.</p>
+    <div class="loc-grid">
+      <div class="loc-card">
+        <div class="loc-n">1</div>
+        <div class="loc-name">Zagreb</div>
+        <p class="loc-desc">Croatia's capital is home to a fast-growing urban tourism scene, boutique apartments, and a rich cultural life that international guests are eager to explore — with the right local guide.</p>
+        <span class="loc-pill">Recruiting Now</span>
+      </div>
+      <div class="loc-card">
+        <div class="loc-n">2</div>
+        <div class="loc-name">Istria</div>
+        <p class="loc-desc">One of Europe's finest wine and gastronomy regions. Istria's premium villa market and world-class local producers — from winemakers to truffle hunters to private chefs — make it a natural home for LocalPals.</p>
+        <span class="loc-pill">Recruiting Now</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY EARLY -->
+<section class="section early" id="early">
+  <div class="inner">
+    <div class="eyebrow">Founding Partners</div>
+    <h2 class="display">Why join <em>now</em></h2>
+    <p class="lead">Being part of the founding network is more than early access — it's an opportunity to shape what LocalPals becomes.</p>
+    <div class="early-grid">
+      <div class="early-card"><div class="early-icon">★</div><h3>Founding Visibility</h3><p>Founding partners are featured across the platform and in all guest-facing materials from day one.</p></div>
+      <div class="early-card"><div class="early-icon">◈</div><h3>Curated Only</h3><p>We don't accept everyone. The network stays intentionally small, carefully selected, and genuinely good.</p></div>
+      <div class="early-card"><div class="early-icon">↗</div><h3>Priority Placement</h3><p>Early partners get priority in guest recommendations before the network expands more broadly.</p></div>
+      <div class="early-card"><div class="early-icon">✦</div><h3>Shape the Platform</h3><p>We actively involve founding partners in product decisions. Your experience genuinely matters here.</p></div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- TRUST -->
+<section class="section trust" id="trust">
+  <div class="inner">
+    <div class="eyebrow">Our Approach</div>
+    <h2 class="display">Built for <em>genuine</em> hospitality</h2>
+    <div class="trust-grid">
+      <div class="trust-cell"><div class="trust-num">01 ·</div><h3>Curated, not collected</h3><p>Every partner in the LocalPals network is personally reviewed. We work only with people we'd genuinely recommend to guests ourselves.</p></div>
+      <div class="trust-cell"><div class="trust-num">02 ·</div><h3>Guest-first by design</h3><p>Everything we build is optimised for the guest experience first. Great partners deserve guests who are ready, engaged, and well-served.</p></div>
+      <div class="trust-cell"><div class="trust-num">03 ·</div><h3>Local knowledge, trusted delivery</h3><p>LocalPals is built by people who know Croatia. We partner only with those who take their craft and their guests seriously.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPANY -->
+<section class="section company" id="company">
+  <div class="inner">
+    <div class="eyebrow">The Company Behind It</div>
+    <h2 class="display">Built by people who <em>know Croatia</em></h2>
+    <div class="company-box">
+      <div>
+        <p class="lead" style="margin-bottom:24px;">LocalPals is not a side project. It is an initiative developed and operated by an established Croatia-based company with a track record in advisory and project development.</p>
+        <p class="lead" style="font-size:.9rem; margin-bottom:32px;">We're serious about building something that lasts — a platform that genuinely serves both partners and guests, built on trust and local expertise.</p>
+        <a href="#apply" class="btn btn-dark">
+          Join the LocalPals Network
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+      <div class="company-card">
+        <div class="eyebrow" style="margin-bottom:8px;">Operating Company</div>
+        <div class="company-name">Bottom Line Advisory d.o.o</div>
+        <p class="company-desc">LocalPals is an initiative developed by Bottom Line Advisory d.o.o, a Croatia-based advisory and project development company. The company brings operational experience and local market expertise to the development of the LocalPals partner network.</p>
+        <p class="company-reg">Registered in the Republic of Croatia · local-pals.com</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APPLY -->
+<section class="section apply" id="apply">
+  <div class="inner">
+    <div class="eyebrow">Partner Application</div>
+    <h2 class="display">Join the founding <em>network</em></h2>
+    <div class="apply-inner">
+      <div class="apply-left">
+        <p class="lead">Tell us about yourself. We review every application personally and aim to respond within a few working days.</p>
+        <p style="margin-top:32px; font-size:.78rem; color:var(--ink-light); font-weight:300; line-height:1.7;">
+          An initiative by <span style="color:var(--ink-mid); font-weight:400;">Bottom Line Advisory d.o.o</span> · Croatia
+        </p>
+      </div>
+      <div id="form-area">
+
+        <!-- TAB BUTTONS -->
+        <div class="toggle">
+          <button class="toggle-btn on" id="btn-prop" type="button" onclick="showForm('property')">Property Partner</button>
+          <button class="toggle-btn" id="btn-exp" type="button" onclick="showForm('experience')">Experience Provider</button>
+        </div>
+
+        <!-- PROPERTY FORM -->
+        <form id="form-property" action="https://formspree.io/f/mzdjkbkw" method="POST">
+          <input type="hidden" name="partnerType" value="Property Partner">
+          <div class="form-grid">
+            <div class="field"><label>Full Name</label><input type="text" name="name" placeholder="Your name" required></div>
+            <div class="field"><label>Company / Property Name</label><input type="text" name="company" placeholder="Business or property name"></div>
+            <div class="field">
+              <label>City or Region</label>
+              <select name="city"><option value="">Select area</option><option>Zagreb</option><option>Istria — Pula</option><option>Istria — Rovinj</option><option>Istria — Porec</option><option>Istria — Motovun / Interior</option><option>Other</option></select>
+            </div>
+            <div class="field">
+              <label>Type of Property</label>
+              <select name="type"><option value="">Select type</option><option>Villa (private)</option><option>Boutique apartments</option><option>Property management company</option><option>Boutique hotel / accommodation</option></select>
+            </div>
+            <div class="field"><label>Phone Number</label><input type="tel" name="phone" placeholder="+385 ..."></div>
+            <div class="field"><label>Email Address</label><input type="email" name="email" placeholder="your@email.com" required></div>
+            <div class="field span2"><label>Short Note (optional)</label><textarea name="note" placeholder="Tell us about your property and what draws you to LocalPals."></textarea></div>
+          </div>
+          <button type="submit" class="form-submit">Submit Application &#8594;</button>
+          <p class="form-note">We review every application personally. You will hear from us within a few days.</p>
+        </form>
+
+        <!-- EXPERIENCE FORM -->
+        <form id="form-experience" action="https://formspree.io/f/mzdjkbkw" method="POST" style="display:none;">
+          <input type="hidden" name="partnerType" value="Experience Provider">
+          <div class="form-grid">
+            <div class="field"><label>Full Name</label><input type="text" name="name" placeholder="Your name" required></div>
+            <div class="field"><label>Business Name</label><input type="text" name="company" placeholder="Your business name"></div>
+            <div class="field">
+              <label>City or Region</label>
+              <select name="city"><option value="">Select area</option><option>Zagreb</option><option>Istria — Pula</option><option>Istria — Rovinj</option><option>Istria — Porec</option><option>Istria — Motovun / Interior</option><option>Other</option></select>
+            </div>
+            <div class="field">
+              <label>Type of Experience</label>
+              <select name="type"><option value="">Select type</option><option>Wine and tastings</option><option>Private chef / culinary</option><option>Wellness and massage</option><option>Guided tours and excursions</option><option>Airport and private transfers</option><option>Boat and water experiences</option><option>Other local service</option></select>
+            </div>
+            <div class="field"><label>Phone Number</label><input type="tel" name="phone" placeholder="+385 ..."></div>
+            <div class="field"><label>Email Address</label><input type="email" name="email" placeholder="your@email.com" required></div>
+            <div class="field span2"><label>Short Note (optional)</label><textarea name="note" placeholder="Tell us about your experience and what draws you to LocalPals."></textarea></div>
+          </div>
+          <button type="submit" class="form-submit">Submit Application &#8594;</button>
+          <p class="form-note">We review every application personally. You will hear from us within a few days.</p>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final">
+  <div class="inner">
+    <div class="eyebrow" style="justify-content:center;"><span style="display:block;width:24px;height:1px;background:var(--gold);flex-shrink:0;"></span>Join the Network</div>
+    <h2>Let's build better<br>guest experiences<br>in <em>Croatia</em></h2>
+    <p class="lead-light" style="margin:0 auto;">LocalPals is recruiting founding partners now in Zagreb and Istria. Space in the network is intentionally limited.</p>
+    <div class="final-btns">
+      <a href="#apply" class="btn btn-gold">
+        Become a Founding Partner
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="/cdn-cgi/l/email-protection#0a78656f6f4a6665696b66277a6b667924696567" class="btn btn-outline-light">Contact Us Directly</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <a href="#" class="footer-logo">Local<span>Pals</span></a>
+      <div class="footer-tagline">A curated concierge network for Croatia</div>
+    </div>
+    <ul class="footer-links">
+      <li><a href="#what">About</a></li>
+      <li><a href="#property">Property Partners</a></li>
+      <li><a href="#experiences">Experiences</a></li>
+      <li><a href="#locations">Locations</a></li>
+      <li><a href="#apply">Apply</a></li>
+      <li><a href="/cdn-cgi/l/email-protection#8dffe2e8e8cde1e2eeece1a0fdece1fea3eee2e0">Contact</a></li>
+    </ul>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 LocalPals · local-pals.com</span>
+    <span>An initiative by Bottom Line Advisory d.o.o · Croatia</span>
+  </div>
+</footer>
+
+<script>
+var nav = document.getElementById('nav');
+window.onscroll = function() {
+  if (window.scrollY > 40) nav.classList.add('up');
+  else nav.classList.remove('up');
+};
+
+function showForm(type) {
+  var propForm = document.getElementById('form-property');
+  var expForm  = document.getElementById('form-experience');
+  var btnProp  = document.getElementById('btn-prop');
+  var btnExp   = document.getElementById('btn-exp');
+  if (type === 'property') {
+    propForm.style.display = 'block';
+    expForm.style.display  = 'none';
+    btnProp.classList.add('on');
+    btnExp.classList.remove('on');
+  } else {
+    propForm.style.display = 'none';
+    expForm.style.display  = 'block';
+    btnProp.classList.remove('on');
+    btnExp.classList.add('on');
+  }
+}
+
+var links = document.querySelectorAll('a[href^="#"]');
+for (var i = 0; i < links.length; i++) {
+  links[i].addEventListener('click', function(e) {
+    var id = this.getAttribute('href');
+    if (id === '#') return;
+    var el = document.querySelector(id);
+    if (el) { e.preventDefault(); el.scrollIntoView({ behavior: 'smooth' }); }
+  });
+}
+</script>
+</body>
+</html>
